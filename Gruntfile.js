@@ -114,6 +114,22 @@ module.exports = function (grunt) {
           }
         ]
       },
+      nomin: {
+        files: [
+          {
+            expand: true,
+            cwd: 'dist/temp',
+            src: ['style.css'],
+            dest: 'dist/assets/css'
+          },
+          {
+            expand: true,
+            cwd: 'src/assets/js/components/reveal.js/lib/css',
+            src: ['zenburn.css'],
+            dest: 'dist/assets/css'
+          }
+        ]
+      }
 
     },
 
@@ -164,6 +180,7 @@ module.exports = function (grunt) {
   // Default task(s).
   grunt.registerTask('default', ['assemble']);
   grunt.registerTask('assemble', ['clean:pre', 'less', 'cssmin', 'concat', 'uglify', 'jade', 'copy', 'clean:post']);
+  grunt.registerTask('assemble-nomin', ['clean:pre', 'less', 'concat', 'uglify', 'jade', 'copy', 'clean:post']);
   grunt.registerTask('run', ['connect', 'watch']);
   grunt.registerTask('publish', ['assemble', 'shell:publish']);
 
